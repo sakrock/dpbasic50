@@ -1,1 +1,41 @@
-sa
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--){
+        //taking input
+        string a,b;
+        cin>>a>>b;
+        int a_len=a.size(),b_len=b.size();
+        char lcs_word[min(a_len,b_len)];
+        //array for dp
+        int lcs[a_len+1][b_len+1];
+        
+        //initialising the array with 0
+        memset(lcs,0, sizeof(lcs[0][0])*(a_len+1)*(b_len+1));
+        
+        for(int i=0;i<a_len+1;i++){
+            for(int j=0;j<b_len+1;j++){
+                //cout<<lcs[i][j]<<" ";
+            }
+            //cout<<endl;
+        }
+        
+        for(int i=1;i<=a_len;i++){
+            for(int j=1;j<=b_len;j++){
+                if(a[i-1]==b[j-1]){
+                    lcs[i][j]=1+lcs[i-1][j-1];
+                }
+                else{
+                    lcs[i][j]=max(lcs[i-1][j],lcs[i][j-1]);
+                }
+            }
+        }
+        cout<<"max length of LCS is "<<lcs[a_len][b_len]<<endl;
+    }
+    return 0;
+}
+
